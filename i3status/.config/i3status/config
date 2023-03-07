@@ -1,0 +1,56 @@
+general {
+        colors = false
+        markup = pango
+        interval = 5
+}
+
+order += "disk /"
+order += "disk /home"
+order += "memory"
+order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+order += "battery 1"
+order += "tztime local"
+
+memory {
+        format = "<span background='#ebcb8b' foreground='#282828'> %used </span>"
+        threshold_degraded = "0.5M"
+}
+
+battery 1 {
+	last_full_capacity = true
+        format = "<span background='#a3be8c' foreground='#282828'> %status %percentage </span>"
+        format_down = "<span background='#a3be8c' foreground='#282828'> No Battery </span>"
+        status_chr = "<span background='#a3be8c' foreground='#282828'> Charging </span>"
+        status_bat = "<span background='#a3be8c' foreground='#282828'> Battery </span>"
+        status_unk = "<span background='#a3be8c' foreground='#282828'> Unknown </span>"
+        status_full = "<span background='#a3be8c' foreground='#282828'> Charged </span>"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+load {
+        format = "<span background='#4f484f' foreground='#282828'> %5min Load </span>"
+}
+disk "/" {
+        format = "<span background='#fec7cd' foreground='#282828'> %free Free </span>"
+}
+
+disk "/home" {
+        format = "<span background='#a1d569' foreground='#282828'> %free Free </span>"
+}
+
+cpu_temperature 0 {
+        format = "<span background='#bf616a' foreground='#282828'> %degrees °c </span>" 
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+cpu_temperature 1 {
+        format = "<span background='#88c0d0' foreground='#282828'> %degrees °c </span>"
+        path = "/sys/class/thermal/thermal_zone1/temp"
+}
+
+tztime local {
+		format = "<span background='#b48ead' foreground='#282828'> %a %-d %b %I:%M </span>"
+}
+
